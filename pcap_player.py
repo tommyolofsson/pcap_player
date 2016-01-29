@@ -34,7 +34,7 @@ def main(argv):
             for packet in pcap.packets:
                 t_send_pcap = _packet_ts(packet)
                 t_send_pcap_rel = t_send_pcap - t0_pcap
-                t_send_sys_rel = args.Kt * t_send_pcap_rel
+                t_send_sys_rel = t_send_pcap_rel / args.Kt
                 t_send_sys = t_send_sys_rel + t0_sys
                 while True:
                     delay = t_send_sys - time.clock()
