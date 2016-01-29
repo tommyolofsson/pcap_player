@@ -30,14 +30,14 @@ def main(argv):
             print "Replaying %d packets during %f seconds..."  % (n, t)
 
             t0_pcap = _packet_ts(pcap.packets[0])
-            t0_sys = time.clock()
+            t0_sys = time.time()
             for packet in pcap.packets:
                 t_send_pcap = _packet_ts(packet)
                 t_send_pcap_rel = t_send_pcap - t0_pcap
                 t_send_sys_rel = t_send_pcap_rel / args.Kt
                 t_send_sys = t_send_sys_rel + t0_sys
                 while True:
-                    delay = t_send_sys - time.clock()
+                    delay = t_send_sys - time.time()
                     if delay <= 0:
                         break
                     time.sleep(delay)
